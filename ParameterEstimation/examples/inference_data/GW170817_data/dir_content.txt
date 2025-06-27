@@ -1,0 +1,11 @@
+The Parameter Estimation module will automatically download the following files into this directory. These files are not included in the repository due to size constraints.
+examples/inference_data/
+└── GW170817_data
+    ├── dingo-bns-model_GW170817.pt
+    ├── GWTC1_GW170817_PSD_H1.txt
+    ├── GWTC1_GW170817_PSD_L1.txt
+    ├── GWTC1_GW170817_PSD_V1.txt
+    ├── GWTC1_GW170817_PSDs.dat
+    ├── H-H1_LOSC_CLN_4_V1-1187007040-2048.gwf
+    ├── L-L1_LOSC_CLN_4_V1-1187007040-2048.gwf
+    └── V-V1_LOSC_CLN_4_V1-1187007040-2048.gwf

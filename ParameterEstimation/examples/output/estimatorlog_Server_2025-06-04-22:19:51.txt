@@ -1,0 +1,25 @@
+[2025-06-04 22:19:51,412 INFO server]: Logging to /lus/eagle/projects/RAPINS/parth/MMA_RadioWave/ParameterEstimation/examples/output/estimatorlog_Server_2025-06-04-22:19:51.txt
+[2025-06-04 22:19:51,416 INFO server]: [Parameter Estimator] Started Parameter Estimation Process...
+[2025-06-04 22:19:51,422 INFO server]: Skipping download, file already exists: /lus/eagle/projects/RAPINS/parth/MMA_RadioWave/ParameterEstimation/examples/inference_data/GW170817_data/dingo-bns-model_GW170817.pt
+[2025-06-04 22:19:51,423 INFO server]: Skipping download, file already exists: /lus/eagle/projects/RAPINS/parth/MMA_RadioWave/ParameterEstimation/examples/inference_data/GW170817_data/GWTC1_GW170817_PSDs.dat
+[2025-06-04 22:19:53,938 INFO server]: Skipping download, file already exists: /lus/eagle/projects/RAPINS/parth/MMA_RadioWave/ParameterEstimation/examples/inference_data/GW170817_data/H-H1_LOSC_CLN_4_V1-1187007040-2048.gwf
+[2025-06-04 22:19:53,939 INFO server]: Skipping download, file already exists: /lus/eagle/projects/RAPINS/parth/MMA_RadioWave/ParameterEstimation/examples/inference_data/GW170817_data/L-L1_LOSC_CLN_4_V1-1187007040-2048.gwf
+[2025-06-04 22:19:53,940 INFO server]: Skipping download, file already exists: /lus/eagle/projects/RAPINS/parth/MMA_RadioWave/ParameterEstimation/examples/inference_data/GW170817_data/V-V1_LOSC_CLN_4_V1-1187007040-2048.gwf
+[2025-06-04 22:19:53,940 INFO server]: 
+ Ensure following data paths are used in the Dingo INI file:
+[2025-06-04 22:19:53,940 INFO server]:  Model path: /lus/eagle/projects/RAPINS/parth/MMA_RadioWave/ParameterEstimation/examples/inference_data/GW170817_data/dingo-bns-model_GW170817.pt
+[2025-06-04 22:19:53,940 INFO server]:   PSD path for H1: /lus/eagle/projects/RAPINS/parth/MMA_RadioWave/ParameterEstimation/examples/inference_data/GW170817_data/GWTC1_GW170817_PSD_H1.txt
+[2025-06-04 22:19:53,940 INFO server]:   PSD path for L1: /lus/eagle/projects/RAPINS/parth/MMA_RadioWave/ParameterEstimation/examples/inference_data/GW170817_data/GWTC1_GW170817_PSD_L1.txt
+[2025-06-04 22:19:53,940 INFO server]:   PSD path for V1: /lus/eagle/projects/RAPINS/parth/MMA_RadioWave/ParameterEstimation/examples/inference_data/GW170817_data/GWTC1_GW170817_PSD_V1.txt
+[2025-06-04 22:19:53,940 INFO server]:  Strain frame for H1: /lus/eagle/projects/RAPINS/parth/MMA_RadioWave/ParameterEstimation/examples/inference_data/GW170817_data/H-H1_LOSC_CLN_4_V1-1187007040-2048.gwf
+[2025-06-04 22:19:53,940 INFO server]:  Strain frame for L1: /lus/eagle/projects/RAPINS/parth/MMA_RadioWave/ParameterEstimation/examples/inference_data/GW170817_data/L-L1_LOSC_CLN_4_V1-1187007040-2048.gwf
+[2025-06-04 22:19:53,940 INFO server]:  Strain frame for V1: /lus/eagle/projects/RAPINS/parth/MMA_RadioWave/ParameterEstimation/examples/inference_data/GW170817_data/V-V1_LOSC_CLN_4_V1-1187007040-2048.gwf
+[2025-06-04 22:19:53,940 INFO server]: 
+ Please verify that these paths match those specified in your Dingo .ini configuration file.
+[2025-06-04 22:21:58,316 INFO server]: Excluding constant or invalid columns. Using: ['delta_chirp_mass', 'mass_ratio', 'a_1', 'a_2', 'tilt_1', 'tilt_2', 'phi_12', 'phi_jl', 'theta_jn', 'luminosity_distance', 'geocent_time', 'psi', 'lambda_1', 'lambda_2', 'chirp_mass', 'phase', 'weights']
+[2025-06-04 22:21:58,318 INFO server]: Using importance sampling weights in plot.
+[2025-06-04 22:22:03,984 INFO server]: Excluding constant or invalid columns. Using: ['chirp_mass', 'mass_ratio', 'a_1', 'a_2', 'theta_jn', 'luminosity_distance']
+[2025-06-04 22:22:03,985 INFO server]: Using importance sampling weights in plot.
+[2025-06-04 22:22:06,054 INFO server]: Excluding constant or invalid columns. Using: ['theta_jn', 'luminosity_distance']
+[2025-06-04 22:22:06,055 INFO server]: Using importance sampling weights in plot.
+[2025-06-04 22:22:06,348 INFO server]:  Extracted posterior samples for parameters: ['theta_jn', 'luminosity_distance']
