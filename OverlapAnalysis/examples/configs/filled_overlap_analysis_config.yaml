@@ -10,16 +10,17 @@ overlap_analysis_configs:
 
   #Path to save the ovaerlap contour plot
   result_dir: "/projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/OverlapAnalysis/examples/result"
+  
   # define Octopus kafka parameters here like consumer settings (offset policy)
   # Overlap analysis module listens for posterior samples from paramter estimator and posterior samples from afterglowpy federated fitting afterglow
   comm_configs:
     octopus_configs:
-      afterglow_topic:
-        topic: 'MMA_RW_FedFit_Events'
-        group_id: 'mma-OverlapAnalysis'
-      estimator_topic:
-        topic: 'MMA_ParamEstimator_Module_Events'
-        group_id: 'mma-OverlapAnalysis'
+      # afterglow_topic:
+      #   topic: 'MMA_RW_FedFit_Events'
+      #   group_id: 'mma-OverlapAnalysis'
+      # estimator_topic:
+      #   topic: 'MMA_ParamEstimator_Module_Events'
+      #   group_id: 'mma-OverlapAnalysis'
       overlap_analysis_topic:
         topic: 'MMA_OverlapAnalyzer_Module_Events'
         group_id: 'mma-OverlapAnalysis'

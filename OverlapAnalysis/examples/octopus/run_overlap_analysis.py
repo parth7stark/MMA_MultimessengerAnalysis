@@ -40,9 +40,12 @@ if overlap_analyzer_config.overlap_analysis_configs.simulate_events == "yes":
     octopuscommunicator.publish_posteriors_from_files()
 
 print("[Overlap Analyzer] Listening for posterior samples from Dingo and Afterglowpy...")
+dingo_samples_received = False
+afterglow_samples_received = False
+
 for msg in octopuscommunicator.consumer:
     topic = msg.topic
-    overlap_analyzer_agent.logger.info(f"[octopus msg: {msg}")
+    # overlap_analyzer_agent.logger.info(f"[octopus msg: {msg}")
 
     data_str = msg.value.decode("utf-8")  # decode to string
     data = json.loads(data_str)          # parse JSON to dict
@@ -54,18 +57,18 @@ for msg in octopuscommunicator.consumer:
     elif Event_type == "AfterglowPosteriorSamplesReady":
         afterglow_samples, afterglow_samples_received = octopuscommunicator.handle_AfterglowPosteriorSamplesReady_message(data)
     
-    elif Event_type == "ServerStarted":
+    elif Event_type == "OverlapAnalyzerStarted":
             # Continue listening other events
         continue
-
-    elif dingo_samples_received==True and afterglow_samples_received==True:
-        break
-
     else:
         print(f"[Server] Unknown Event Type in topic ({topic}): {Event_type}", flush=True)
         overlap_analyzer_agent.logger.info(f"[Server] Unknown Event Type in topic ({topic}): {Event_type}")
 
+
+    if dingo_samples_received==True and afterglow_samples_received==True:
+        break
+    
 # Full overlap contour plot
-result_dir =  overlap_analyzer_config.overlap_analysis_configs.dingo_configs.result_dir
-overlap_analyzer_agent.analyzer.plot_overlap(dingo_samples, dingo_weights, afterglow_samples, output_path=result_dir + "/dingo_fedfit_overlap_contour_plot.png")
+result_dir =  overlap_analyzer_config.overlap_analysis_configs.result_dir
+overlap_analyzer_agent.analyzer.perform_overlap_analysis(dingo_samples, dingo_weights, afterglow_samples, output_path=result_dir + "/dingo_fedfit_overlap_contour_plot.png")
 

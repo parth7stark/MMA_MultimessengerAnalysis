@@ -5,13 +5,12 @@ overlap_analysis_configs:
   dingo_filepath: "/simulation/dingo_posterior_samples.hdf5"
   fedfit_filepath: "/simulation/fedfit_posterior_samples.hdf5"
 
-
   logging_output_dirname: "<absolute path to repo>/examples/output"
   logging_output_filename: "OverlapAnalysis"
   
   #Path to save the ovaerlap contour plot
   result_dir: "<absolute path to repo>/examples/result"
-  
+
   # define Octopus kafka parameters here like consumer settings (offset policy)
   # Overlap analysis module listens for posterior samples from paramter estimator and posterior samples from afterglowpy federated fitting afterglow sent to overlap analysis topic
   comm_configs:

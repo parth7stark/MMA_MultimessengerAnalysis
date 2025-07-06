@@ -131,7 +131,7 @@ class AnalyzeResults():
             samples_list=[samples_dingo, samples_fed],
             names=['GW data (Dingo)', 'Radio data - federated fitting (afterglowpy)'],
             colors=['goldenrod', 'purple'],
-            linestyles=['-', '-']
-            # title='All data'
+            linestyles=['-', '-'],
+            title='All data'
         )
     

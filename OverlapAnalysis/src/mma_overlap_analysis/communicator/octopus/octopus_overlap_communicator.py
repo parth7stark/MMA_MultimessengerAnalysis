@@ -28,15 +28,15 @@ class OctopusOverlapCommunicator:
         self.logger = logger if logger is not None else self._default_logger()
         
         # MMA topic: topic where Estimator publishes posterior samples for overllaped analysis
-        self.overlap_analysis_topic = self.overlap_analyzer_agent.overlap_analyzer_config.overlap_analysis_config.comm_configs.octopus_configs.overlap_analysis_topic.topic
+        self.overlap_analysis_topic = self.overlap_analyzer_agent.overlap_analyzer_config.overlap_analysis_configs.comm_configs.octopus_configs.overlap_analysis_topic.topic
 
 
         # Kafka producer for control messages and sending Embeddings
         self.producer = KafkaProducer()
 
 
-        overlap_analyzer_group_id = self.overlap_analyzer_agent.overlap_analyzer_config.overlap_analysis_config.comm_configs.octopus_configs.overlap_analysis_topic.group_id
-        # estimator_overlap_analyzer_group_id = self.overlap_analyzer_agent.overlap_analyzer_config.overlap_analysis_config.comm_configs.octopus_configs.afterglow_topic.group_id
+        overlap_analyzer_group_id = self.overlap_analyzer_agent.overlap_analyzer_config.overlap_analysis_configs.comm_configs.octopus_configs.overlap_analysis_topic.group_id
+        # estimator_overlap_analyzer_group_id = self.overlap_analyzer_agent.overlap_analyzer_config.overlap_analysis_configs.comm_configs.octopus_configs.afterglow_topic.group_id
         
         self.consumer = KafkaConsumer(
             self.overlap_analysis_topic,
@@ -95,18 +95,18 @@ class OctopusOverlapCommunicator:
         }
         :return: None for async and if sync communication return Metadata containing the server's acknowledgment status.
         """
-        dingo_samples, dingo_weights = self.extract_dingo_samples(self.overlap_analyzer_config.overlap_analysis_configs.dingo_filepath)
-        afterglow_samples = self.extract_afterglowpy_samples(self.overlap_analyzer_config.overlap_analysis_configs.fedfit_filepath)
+        dingo_samples, dingo_weights = self.extract_dingo_samples(self.overlap_analyzer_agent.overlap_analyzer_config.overlap_analysis_configs.dingo_filepath)
+        afterglow_samples = self.extract_afterglowpy_samples(self.overlap_analyzer_agent.overlap_analyzer_config.overlap_analysis_configs.fedfit_filepath)
 
 
         # param_names = posterior_df.columns.tolist()
         param_names = ["theta_Obs", "D_L"]
 
         # Step 2: Convert to tensor for transfer
-        tensor_dingo_samples = torch.tensor(dingo_samples.to_numpy())  # Shape [N, num_params]
-        tensor_dingo_weights = torch.tensor(dingo_weights.to_numpy())  # Shape [N, num_params]
+        tensor_dingo_samples = torch.tensor(dingo_samples)  # Shape [N, num_params]
+        tensor_dingo_weights = torch.tensor(dingo_weights)  # Shape [N, num_params]
 
-        tensor_afterglow_samples = torch.tensor(afterglow_samples.to_numpy())  # Shape [N, num_params]
+        tensor_afterglow_samples = torch.tensor(afterglow_samples)  # Shape [N, num_params]
 
         # Step 3: Proxy if needed
         if self.overlap_analyzer_agent.use_proxystore:
@@ -127,8 +127,8 @@ class OctopusOverlapCommunicator:
         dingo_msgdata = {
             "EventType": "DingoPosteriorSamplesReady",
             "parameters": param_names,
-            "posterior_samples": dingo_payload_b64,
-            "importance_weights": dingo_weight_payload_b64
+            "posterior_samples": dingo_payload_b64
+            # "importance_weights": dingo_weight_payload_b64
         }
 
         afterglow_msgdata = {
@@ -141,6 +141,8 @@ class OctopusOverlapCommunicator:
             self.overlap_analysis_topic,
             value=dingo_msgdata
         )
+        self.producer.flush()
+
         self.logger.info(f"Send Dingo Posterior Samples to Overlap Analysis module")
 
         self.producer.send(
@@ -156,28 +158,29 @@ class OctopusOverlapCommunicator:
     def handle_DingoPosteriorSamplesReady_message(self, data):
 
         dingo_samples_b64 = data["posterior_samples"]
-        dingo_weights_b64 = data["importance_weights"]
+        # dingo_weights_b64 = data["importance_weights"]
         
         # Deserialize and extract tensor
         tensor_dingo_samples = deserialize_tensor_from_base64(dingo_samples_b64)
-        tensor_dingo_weights = deserialize_tensor_from_base64(dingo_weights_b64)
+        # tensor_dingo_weights = deserialize_tensor_from_base64(dingo_weights_b64)
 
         if isinstance(tensor_dingo_samples, Proxy):
             self.logger.info(" Extracting Dingo posterior tensor from ProxyStore.")
 
             tensor_dingo_samples = extract(tensor_dingo_samples)
 
-        if isinstance(tensor_dingo_weights, Proxy):
-            tensor_dingo_weights = extract(tensor_dingo_weights)
+        # if isinstance(tensor_dingo_weights, Proxy):
+        #     tensor_dingo_weights = extract(tensor_dingo_weights)
 
         dingo_samples = tensor_dingo_samples.numpy()  # Get back list for further processing
-        dingo_weights = tensor_dingo_weights.numpy()  # Get back list for further processing
+        # dingo_weights = tensor_dingo_weights.numpy()  # Get back list for further processing
 
         self.logger.info(f"Received Dingo Posterior Samples")
 
+        dingo_weights = []
         return dingo_samples, dingo_weights, True
     
-    def AfterglowPosteriorSamplesReady(self, data):
+    def handle_AfterglowPosteriorSamplesReady_message(self, data):
 
         afterglow_samples_b64 = data["posterior_samples"]
         

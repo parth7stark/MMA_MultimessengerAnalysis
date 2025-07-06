@@ -27,10 +27,10 @@ class OverlapAnalyzerAgent:
 
     def _create_logger(self) -> None:
         kwargs = {}
-        if hasattr(self.overlap_analyzer_config.bns_parameter_estimation_configs, "logging_output_dirname"):
-            kwargs["file_dir"] = self.overlap_analyzer_config.bns_parameter_estimation_configs.logging_output_dirname
-        if hasattr(self.overlap_analyzer_config.bns_parameter_estimation_configs, "logging_output_filename"):
-            kwargs["file_name"] = self.overlap_analyzer_config.bns_parameter_estimation_configs.logging_output_filename
+        if hasattr(self.overlap_analyzer_config.overlap_analysis_configs, "logging_output_dirname"):
+            kwargs["file_dir"] = self.overlap_analyzer_config.overlap_analysis_configs.logging_output_dirname
+        if hasattr(self.overlap_analyzer_config.overlap_analysis_configs, "logging_output_filename"):
+            kwargs["file_name"] = self.overlap_analyzer_config.overlap_analysis_configs.logging_output_filename
         self.logger = ServerAgentFileLogger(**kwargs)
 
 

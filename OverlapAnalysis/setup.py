@@ -45,6 +45,7 @@ setuptools.setup(
         # "h5py",
         "scipy", # used by analyze_results.py
         "matplotlib",
+        "proxystore[all]",
         # "dingo-bns", # install via requirement.txt -- need dingo for simulation flag workflow else not needed
     ],
     extras_require={
