@@ -1,0 +1,38 @@
+overlap_analysis_configs:
+
+  # Run in simulation mode (extract posterior samples from dingo and afterglowpy HDF5 files)
+  simulate_events: "yes"
+  dingo_filepath: "/projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/OverlapAnalysis/examples/simulation/GW170817_data0_1187008882-42_importance_sampling.hdf5"
+  fedfit_filepath: "/projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/OverlapAnalysis/examples/simulation/pf_8sites_distributed_dayAll_run13_distributed_flat_samples.npy"
+
+  logging_output_dirname: "/projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/OverlapAnalysis/examples/output"
+  logging_output_filename: "OverlapAnalysis"
+
+  #Path to save the ovaerlap contour plot
+  result_dir: "/projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/OverlapAnalysis/examples/result"
+  # define Octopus kafka parameters here like consumer settings (offset policy)
+  # Overlap analysis module listens for posterior samples from paramter estimator and posterior samples from afterglowpy federated fitting afterglow
+  comm_configs:
+    octopus_configs:
+      afterglow_topic:
+        topic: 'MMA_RW_FedFit_Events'
+        group_id: 'mma-OverlapAnalysis'
+      estimator_topic:
+        topic: 'MMA_ParamEstimator_Module_Events'
+        group_id: 'mma-OverlapAnalysis'
+      overlap_analysis_topic:
+        topic: 'MMA_OverlapAnalyzer_Module_Events'
+        group_id: 'mma-OverlapAnalysis'
+
+    # Proxystore configs are present in overlap analysis yaml just for simulation purposes. These code should go in federated fitting and paramter estimator module as they send proxy(posterior samples)
+    proxystore_configs:
+      enable_proxystore: True
+      # connector_type: "EndpointConnector"
+      # connector_configs:
+      #   endpoints: ["b9161509-0af5-4f5b-8541-75550afa95bd","c7b0e638-2284-420a-83e7-c9d007881a60"]
+        # parameter estimator/federated fitting endpoint, overlap analysis endpoint
+        
+      connector_type: "FileConnector"
+      connector_configs:
+        store_dir: "/scratch/bcbw/parthpatel7173/proxystore"
+    
