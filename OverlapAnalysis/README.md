@@ -20,6 +20,14 @@ Please follow these steps:
 
 2. Build the Apptainer image:
 
+    First, clone the dingo repository and checkout the dingo-bns branch:
+    
+    ```bash
+    git clone -b bns_add_dingo_pipe_max https://github.com/dingo-gw/dingo.git ./dingo
+    ```
+
+    Then build the Apptainer image:
+
     ```bash
     apptainer build MMA_OverlapAnalysis_miniapp.sif apptainer/MMA_OverlapAnalysis_miniapp.def
     ```
