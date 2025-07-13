@@ -2,8 +2,8 @@ overlap_analysis_configs:
 
   # Run in simulation mode (extract posterior samples from dingo and afterglowpy HDF5 files)
   simulate_events: "yes"
-  dingo_filepath: "/simulation/dingo_posterior_samples.hdf5"
-  fedfit_filepath: "/simulation/fedfit_posterior_samples.hdf5"
+  dingo_filepath: "<absolute path to repo>/examples/simulation/dingo_posterior_samples.hdf5"
+  fedfit_filepath: "<absolute path to repo>/examples/simulation/fedfit_posterior_samples.hdf5"
 
   logging_output_dirname: "<absolute path to repo>/examples/output"
   logging_output_filename: "OverlapAnalysis"

@@ -40,5 +40,5 @@ cd <path to cloned repo>
 
 apptainer exec --nv \
   MMA_OverlapAnalysis_miniapp.sif \
-  python /app/examples/octopus/run_overlap_analysis.py --config <absolute path to FL server config file>/FLserver.yaml
+  python /app/examples/octopus/run_overlap_analysis.py --config <absolute path to repo>/examples/configs/overlap_analysis_config.yaml
 
