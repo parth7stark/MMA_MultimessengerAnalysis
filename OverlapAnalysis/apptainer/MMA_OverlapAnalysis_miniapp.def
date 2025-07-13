@@ -7,6 +7,7 @@ From: nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu20.04
     && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
     git \
     wget \
+    build-essential \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get autoremove -y \
     && apt-get clean
@@ -24,7 +25,7 @@ From: nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu20.04
 
     # Install conda packages
     conda install -qy conda==24.11.1 pip python=3.10
-    conda install --channel conda-forge lalsuite
+    # conda install --channel conda-forge lalsuite
     conda clean --all --force-pkgs-dirs --yes
 
     # Set up the working directory
@@ -35,10 +36,16 @@ From: nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu20.04
     # Install setup.py packages
     pip3 install -e ".[examples]"
 
+    # pip3 install git+https://github.com/dingo-gw/dingo.git@bns_add_dingo_pipe_max#egg=dingo-gw
+    # Navigate to cloned dingo repo (specific branch)
+    cd /app/dingo
+    pip3 install -e ".[dev]"
+    
     # Install setup packages then install specific versions using requirements.txt
+    cd /app
     pip3 install -r requirements.txt
 
-    # Install pytorch with CUDA
+    # Install pytorch with CUDA -- need for dingo
     pip3 install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cu118
 
 

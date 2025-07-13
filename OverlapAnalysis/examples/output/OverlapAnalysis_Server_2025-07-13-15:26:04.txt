@@ -1,0 +1,11 @@
+[2025-07-13 15:26:04,094 INFO server]: Logging to /projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/OverlapAnalysis/examples/output/OverlapAnalysis_Server_2025-07-13-15:26:04.txt
+[2025-07-13 15:26:04,849 INFO server]: Published Overlap Analyzer started event.
+[2025-07-13 15:26:04,850 INFO server]: [Overlap Analysis Module] Started Overlap Analysis Process...
+[2025-07-13 15:26:04,850 INFO server]: [Simulation Mode] Loading Dingo/federated fitting posterior samples from HDF5 file and publishing to Octopus...
+[2025-07-13 15:26:05,385 INFO server]: Send Dingo Posterior Samples to Overlap Analysis module
+[2025-07-13 15:26:05,800 INFO server]: Send Afterglow Posterior Samples to Overlap Analysis module
+[2025-07-13 15:26:10,635 INFO server]: Received Dingo Posterior Samples
+[2025-07-13 15:26:10,639 INFO server]: Received Dingo Posterior Samples
+[2025-07-13 15:26:10,870 INFO server]: Received Dingo Posterior Samples
+[2025-07-13 15:26:11,162 INFO server]: Received Afterglow Posterior Samples
+[2025-07-13 15:26:16,276 INFO server]: Saved overlap contour plot: /projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/OverlapAnalysis/examples/result/dingo_fedfit_overlap_contour_plot.png

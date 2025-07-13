@@ -35,5 +35,5 @@ overlap_analysis_configs:
         
       connector_type: "FileConnector"
       connector_configs:
-        store_dir: "/scratch/bcbw/parthpatel7173/proxystore"
+        store_dir: "/projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/OverlapAnalysis/proxystore"
     

@@ -1,8 +1,8 @@
 #!/bin/bash
-#SBATCH --mem=100g                              # required number of memory
+#SBATCH --mem=8g                              # required number of memory
 #SBATCH --nodes=1                               # nodes required for whole simulation
 
-#SBATCH --cpus-per-task=32                       # CPUs for each task
+#SBATCH --cpus-per-task=4                       # CPUs for each task
 ## SBATCH --gpus-per-task=1                      # Uncomment if using gpu
 ##SBATCH --ntasks-per-node=1                     # Uncomment if using gpu 
 
@@ -12,16 +12,16 @@
 ##SBATCH --gpu-bind=none        # Uncomment if using gpu
 
 
-#SBATCH --job-name=MMA_GW_TestContainer_VFL_detector1   # job name
-#SBATCH --time=01:00:00                         # dd-hh:mm:ss for the job
+#SBATCH --job-name=MMA_OverlapAnalysis   # job name
+#SBATCH --time=00:10:00                         # dd-hh:mm:ss for the job
 
-#SBATCH -e MMA_GW_TestContainer_VFL_detector1-err-%j.log
-#SBATCH -o MMA_GW_TestContainer_VFL_detector1-out-%j.log
+#SBATCH -e MMA_OverlapAnalysis-err-%j.log
+#SBATCH -o MMA_OverlapAnalysis-out-%j.log
 
 #SBATCH --constraint="scratch"
 
-#SBATCH --account=<charging account>
-#SBATCH --mail-user=<email-id>
+#SBATCH --account=bbjo-delta-cpu
+#SBATCH --mail-user=pp32@illinois.edu
 #SBATCH --mail-type="BEGIN,END" # See sbatch or srun man pages for more email options
 
 
@@ -36,9 +36,9 @@ module load anaconda3_gpu
 module list
 
 # Change directory to the cloned repo
-cd <path to cloned repo>
+cd /projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/OverlapAnalysis
 
 apptainer exec --nv \
-  MMA_GW_Inference_miniapp.sif \
-  python /app/examples/octopus/run_detector.py --config <absolute path to FL detector0 config file>/detector1.yaml
+  MMA_OverlapAnalysis_miniapp.sif \
+  python /app/examples/octopus/run_overlap_analysis.py --config /projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/OverlapAnalysis/examples/configs/filled_overlap_analysis_config.yaml
 
