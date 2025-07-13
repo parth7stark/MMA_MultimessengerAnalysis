@@ -1,4 +1,6 @@
 omegaconf==2.3.0
+matplotlib==3.9.0
+numpy==1.24.2
 # Dingo from GitHub (specific branch)
 git+https://github.com/dingo-gw/dingo.git@bns_add_dingo_pipe_max#egg=dingo-gw
 

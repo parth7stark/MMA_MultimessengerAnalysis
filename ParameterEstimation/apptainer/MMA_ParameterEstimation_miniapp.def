@@ -5,17 +5,18 @@ From: nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu20.04
     # Update system and install python
     apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
-    git \
+    build-essential \
     wget \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get autoremove -y \
     && apt-get clean
+
     
     # Install a specific conda version to avoid python conflict version (conda requires python>3.11 and <3.12)
     wget -q -P /tmp \
-    https://repo.anaconda.com/miniconda/Miniconda3-py310_24.11.1-0-Linux-aarch64.sh \
-    && bash /tmp/Miniconda3-py310_24.11.1-0-Linux-aarch64.sh -b -p /opt/conda \
-    && rm /tmp/Miniconda3-py310_24.11.1-0-Linux-aarch64.sh
+    https://repo.anaconda.com/miniconda/Miniconda3-py310_24.11.1-0-Linux-x86_64.sh \
+    && bash /tmp/Miniconda3-py310_24.11.1-0-Linux-x86_64.sh -b -p /opt/conda \
+    && rm /tmp/Miniconda3-py310_24.11.1-0-Linux-x86_64.sh
 
 
     # Update PATH to use conda during this build phase
@@ -24,7 +25,9 @@ From: nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu20.04
 
     # Install conda packages
     conda install -qy conda==24.11.1 pip python=3.10
-    conda install --channel conda-forge lalsuite
+    # conda install --channel conda-forge lalsuite
+    conda install conda-forge::git
+
     conda clean --all --force-pkgs-dirs --yes
 
     # Set up the working directory
@@ -38,9 +41,16 @@ From: nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu20.04
     # Install setup packages then install specific versions using requirements.txt
     pip3 install -r requirements.txt
 
+    # In my old requirement.txt I was cloning a specific branch and doing pip install. 
+    # Clone repo manually instead of pip install git+ in requirements.txt
+    # cd /tmp
+    # git clone --branch bns_add_dingo_pipe_max https://github.com/dingo-gw/dingo.git
+    # cd dingo
+    # pip install .
+
     # Install pytorch with CUDA
-    # pip3 install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cu118
-    pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu124
+    pip3 install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cu118
+
 
 %files
     # Copy all files to /app during build

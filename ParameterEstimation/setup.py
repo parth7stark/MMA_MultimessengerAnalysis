@@ -41,10 +41,11 @@ setuptools.setup(
         # "torch",  #installing specific version after pip install .
         "omegaconf",
         "diaspora-event-sdk[kafka-python]",
+        "proxystore[all]",
         # "lalsuite", installing using conda (refer apptainer defination file) before pip install . setup.py
         #"h5py",
         #"scipy",
-        "matplotlib",
+        # "matplotlib",
     ],
     extras_require={
         "examples": [

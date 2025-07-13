@@ -1,0 +1,26 @@
+[2025-07-13 12:29:18,166 INFO server]: Logging to /projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/ParameterEstimation/examples/output/estimatorlog_Server_2025-07-13-12:29:18.txt
+[2025-07-13 12:29:18,171 INFO server]: [Parameter Estimator] Started Parameter Estimation Process...
+[2025-07-13 12:29:18,172 INFO server]: Skipping download, file already exists: /projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/ParameterEstimation/examples/inference_data/GW170817_data/dingo-bns-model_GW170817.pt
+[2025-07-13 12:29:18,172 INFO server]: Skipping download, file already exists: /projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/ParameterEstimation/examples/inference_data/GW170817_data/GWTC1_GW170817_PSDs.dat
+[2025-07-13 12:29:20,185 INFO server]: Skipping download, file already exists: /projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/ParameterEstimation/examples/inference_data/GW170817_data/H-H1_LOSC_CLN_4_V1-1187007040-2048.gwf
+[2025-07-13 12:29:20,185 INFO server]: Skipping download, file already exists: /projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/ParameterEstimation/examples/inference_data/GW170817_data/L-L1_LOSC_CLN_4_V1-1187007040-2048.gwf
+[2025-07-13 12:29:20,186 INFO server]: Skipping download, file already exists: /projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/ParameterEstimation/examples/inference_data/GW170817_data/V-V1_LOSC_CLN_4_V1-1187007040-2048.gwf
+[2025-07-13 12:29:20,186 INFO server]: 
+ Ensure following data paths are used in the Dingo INI file:
+[2025-07-13 12:29:20,186 INFO server]:  Model path: /projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/ParameterEstimation/examples/inference_data/GW170817_data/dingo-bns-model_GW170817.pt
+[2025-07-13 12:29:20,186 INFO server]:   PSD path for H1: /projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/ParameterEstimation/examples/inference_data/GW170817_data/GWTC1_GW170817_PSD_H1.txt
+[2025-07-13 12:29:20,186 INFO server]:   PSD path for L1: /projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/ParameterEstimation/examples/inference_data/GW170817_data/GWTC1_GW170817_PSD_L1.txt
+[2025-07-13 12:29:20,186 INFO server]:   PSD path for V1: /projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/ParameterEstimation/examples/inference_data/GW170817_data/GWTC1_GW170817_PSD_V1.txt
+[2025-07-13 12:29:20,186 INFO server]:  Strain frame for H1: /projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/ParameterEstimation/examples/inference_data/GW170817_data/H-H1_LOSC_CLN_4_V1-1187007040-2048.gwf
+[2025-07-13 12:29:20,186 INFO server]:  Strain frame for L1: /projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/ParameterEstimation/examples/inference_data/GW170817_data/L-L1_LOSC_CLN_4_V1-1187007040-2048.gwf
+[2025-07-13 12:29:20,186 INFO server]:  Strain frame for V1: /projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/ParameterEstimation/examples/inference_data/GW170817_data/V-V1_LOSC_CLN_4_V1-1187007040-2048.gwf
+[2025-07-13 12:29:20,187 INFO server]: 
+ Please verify that these paths match those specified in your Dingo .ini configuration file.
+[2025-07-13 12:30:57,469 INFO server]: Excluding constant or invalid columns. Using: ['delta_chirp_mass', 'mass_ratio', 'a_1', 'a_2', 'tilt_1', 'tilt_2', 'phi_12', 'phi_jl', 'theta_jn', 'luminosity_distance', 'geocent_time', 'psi', 'lambda_1', 'lambda_2', 'chirp_mass', 'phase', 'weights']
+[2025-07-13 12:30:57,470 INFO server]: Using importance sampling weights in plot.
+[2025-07-13 12:31:03,520 INFO server]: Excluding constant or invalid columns. Using: ['chirp_mass', 'mass_ratio', 'a_1', 'a_2', 'theta_jn', 'luminosity_distance']
+[2025-07-13 12:31:03,521 INFO server]: Using importance sampling weights in plot.
+[2025-07-13 12:31:04,633 INFO server]: Excluding constant or invalid columns. Using: ['theta_jn', 'luminosity_distance']
+[2025-07-13 12:31:04,634 INFO server]: Using importance sampling weights in plot.
+[2025-07-13 12:31:04,779 INFO server]:  Extracted posterior samples for parameters: ['theta_jn', 'luminosity_distance']
+[2025-07-13 12:31:05,579 INFO server]: Send Dingo Posterior Samples to MMA module

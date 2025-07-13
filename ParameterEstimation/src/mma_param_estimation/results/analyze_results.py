@@ -172,8 +172,12 @@ class AnalyzeResults():
 
         selected_samples_df = df[param_names]
 
+        weights = None
+        if "weights" in df.columns:
+            weights = df["weights"].to_numpy()
+
         # Convert DataFrame to dictionary (column: list of values)
         # posterior_df = {col: selected_samples[col].tolist() for col in selected_samples.columns}
 
         self.logger.info(f" Extracted posterior samples for parameters: {param_names}")
-        return selected_samples_df
+        return selected_samples_df, weights

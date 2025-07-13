@@ -6,6 +6,7 @@ from mma_param_estimation.logger import ServerAgentFileLogger
 from diaspora_event_sdk import KafkaProducer, KafkaConsumer
 from .utils import serialize_tensor_to_base64, deserialize_tensor_from_base64
 import torch
+import numpy as np
 
 class OctopusEstimatorCommunicator:
     """
@@ -56,7 +57,7 @@ class OctopusEstimatorCommunicator:
         self.logger.info("Published Parameter Estimator started event.")
 
 
-    def send_posterior_samples(self, posterior_df):
+    def send_posterior_samples(self, posterior_df, weights):
         """
         We need to send the posterior_samples of inclination and distance to the MMA_module for overlap analysis
         :param posterior_dict: 
@@ -67,24 +68,37 @@ class OctopusEstimatorCommunicator:
         }
         :return: None for async and if sync communication return Metadata containing the server's acknowledgment status.
         """
-        param_names = posterior_df.columns.tolist()
+        # param_names = posterior_df.columns.tolist()
 
+        theta_obs = np.pi - posterior_df["theta_jn"].to_numpy()
+        dl = posterior_df["luminosity_distance"].to_numpy()
+        # weights = posterior_df["weights"].to_numpy() if "weights" in posterior_df.columns else None
+        dingo_samples = np.column_stack((theta_obs, dl))
+        dingo_weights = weights
+
+        param_names = ["theta_Obs", "D_L"]
+
+    
         # Step 2: Convert to tensor for transfer
-        tensor_samples = torch.tensor(posterior_df.to_numpy())  # Shape [N, num_params]
+        tensor_dingo_samples = torch.tensor(dingo_samples)  # Shape [N, num_params]
+        tensor_dingo_weights = torch.tensor(dingo_weights)  # Shape [N, num_params]
 
         # Step 3: Proxy if needed
         if self.estimator_agent.use_proxystore:
-            tensor_samples = self.estimator_agent.proxystore.proxy(tensor_samples)
+            tensor_dingo_samples = self.estimator_agent.proxystore.proxy(tensor_dingo_samples)
+            tensor_dingo_weights = self.estimator_agent.proxystore.proxy(tensor_dingo_weights)
+
             self.logger.info(f"Posterior samples proxied via ProxyStore.")
 
         # Step 4: Serialize tensor to base64
-        payload_b64 = serialize_tensor_to_base64(tensor_samples)
+        dingo_payload_b64 = serialize_tensor_to_base64(tensor_dingo_samples)
+        dingo_weight_payload_b64 = serialize_tensor_to_base64(tensor_dingo_weights)
 
         # Step 5: Build the Kafka JSON payload
         data = {
             "EventType": "DingoPosteriorSamplesReady",
             "parameters": param_names,
-            "posterior_samples": payload_b64
+            "posterior_samples": dingo_payload_b64
         }
 
         self.producer.send(

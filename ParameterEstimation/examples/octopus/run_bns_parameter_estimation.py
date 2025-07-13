@@ -84,7 +84,7 @@ estimator_agent.analyzer.plot_corner(
 )
 
 # Send posterior samples to mma topic for overlap analysis
-selected_samples_df =  estimator_agent.analyzer.get_posterior_samples(
+selected_samples_df, weights =  estimator_agent.analyzer.get_posterior_samples(
     param_names=["theta_jn", "luminosity_distance"]
 )
 
@@ -94,5 +94,5 @@ selected_samples_df =  estimator_agent.analyzer.get_posterior_samples(
 #   "luminosity_distance": [40.2, 41.0, 39.8, 40.5, ...]
 # }
 
-octopuscommunicator.send_posterior_samples(selected_samples_df)
+octopuscommunicator.send_posterior_samples(selected_samples_df, weights)
 
