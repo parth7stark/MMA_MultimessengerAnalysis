@@ -26,14 +26,14 @@
 
 
 # Load necessary modules
-source /sw/external/python/anaconda3_gpu/etc/profile.d/conda.sh
-conda deactivate
-conda deactivate  # just making sure
-module purge
-module reset  # load the default Delta modules
+# source /sw/external/python/anaconda3_gpu/etc/profile.d/conda.sh
+# conda deactivate
+# conda deactivate  # just making sure
+# module purge
+# module reset  # load the default Delta modules
 
-module load anaconda3_gpu
-module list
+# module load anaconda3_gpu
+# module list
 
 # Change directory to the cloned repo
 cd <path to cloned repo>

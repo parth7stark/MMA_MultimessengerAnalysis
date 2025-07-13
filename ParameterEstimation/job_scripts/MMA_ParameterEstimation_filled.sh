@@ -26,23 +26,23 @@
 
 
 # Load necessary modules
-source /sw/external/python/anaconda3_gpu/etc/profile.d/conda.sh
-conda deactivate
-conda deactivate  # just making sure
-module purge
-module reset  # load the default Delta modules
+# source /sw/external/python/anaconda3_gpu/etc/profile.d/conda.sh
+# conda deactivate
+# conda deactivate  # just making sure
+# module purge
+# module reset  # load the default Delta modules
 
-module load anaconda3_gpu
-module list
+# module load anaconda3_gpu
+# module list
 
-conda activate /u/parthpatel7173/.conda/envs/mma_estim
+# conda activate /u/parthpatel7173/.conda/envs/mma_estim
 
 # Change directory to the cloned repo
 cd /projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/ParameterEstimation/
 
 
-python examples/octopus/run_bns_parameter_estimation.py  --config examples/configs/filled_bns_parameter_estimation_config.yaml
-# apptainer exec --nv \
-#   MMA_ParameterEstimation_miniapp.sif \
-#   python /app/examples/octopus/run_bns_parameter_estimation.py --config <absolute path to Parameter Estimator config file>/bns_parameter_estimation_config.yaml
+# python examples/octopus/run_bns_parameter_estimation.py  --config examples/configs/filled_bns_parameter_estimation_config.yaml
+apptainer exec --nv \
+  MMA_ParameterEstimation_miniapp.sif \
+  python /app/examples/octopus/run_bns_parameter_estimation.py --config /projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/ParameterEstimation/examples/configs/filled_bns_parameter_estimation_config.yaml
 

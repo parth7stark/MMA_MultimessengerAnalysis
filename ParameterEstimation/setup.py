@@ -37,7 +37,7 @@ setuptools.setup(
     packages=setuptools.find_packages(where="src"),
     python_requires=">=3.10",
     install_requires=[
-        # "numpy",  #installing specific version after pip install .
+        "numpy",  #installing specific version after pip install .
         # "torch",  #installing specific version after pip install .
         "omegaconf",
         "diaspora-event-sdk[kafka-python]",
@@ -45,7 +45,8 @@ setuptools.setup(
         # "lalsuite", installing using conda (refer apptainer defination file) before pip install . setup.py
         #"h5py",
         #"scipy",
-        # "matplotlib",
+        "matplotlib",
+        "pandas",
     ],
     extras_require={
         "examples": [

@@ -1,0 +1,17 @@
+universe = vanilla
+executable = /opt/conda/bin/dingo_pipe_importance_sampling
+request_memory = 8.0GB
+request_disk = 5GB
+request_cpus = 8
+initialdir = /projects/bepl/parthpatel7173/POLARIS_backup/MMA_MultimessengerAnalysis/ParameterEstimation
+notification = Never
+requirements = 
+checkpoint_exit_code = 77
+log = examples/outdir_apptainer/log_data_analysis/GW170817_data0_1187008882-42_importance_sampling.log
+output = examples/outdir_apptainer/log_data_analysis/GW170817_data0_1187008882-42_importance_sampling.out
+error = examples/outdir_apptainer/log_data_analysis/GW170817_data0_1187008882-42_importance_sampling.err
+accounting_group = dingo
+priority = 0
+environment = "HDF5_USE_FILE_LOCKING=FAlSE OMP_NUM_THREADS=1 OMP_PROC_BIND=false GWDATAFIND_SERVER=https://datafind.ligo.org"
+arguments = $(ARGS)
+queue
