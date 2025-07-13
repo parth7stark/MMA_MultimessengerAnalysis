@@ -27,29 +27,13 @@ This module streamlines joint GW–EM inference by integrating outputs from grav
 - The overlap analysis aligns posteriors from both sources to quantify combined inference capabilities.
 
 ## Getting Started
-Each subfolder (e.g., parameter_estimation/, overlap_analysis/) includes example scripts and configuration files to reproduce the analyses.
+Each subfolder (e.g., ParameterEstimation/, OverlapAnalysis/) includes example scripts and configuration files to reproduce the analyses.
 
 To run a full end-to-end joint analysis:
 
-1. Run GW parameter estimation using parameter_estimation/dingo_inference.py.
+1. Run GW parameter estimation using ParameterEstimation/dingo_inference.py.
 2. Fit the radio afterglow using afterglowpy scripts from your corresponding Radio module.
-3. Perform joint comparison in overlap_analysis/ using corner plots or KDE-based contours.
-
-## Todo List and Project Plan
-Please refer to our Box folder for the latest project tasks and roadmap: [Link](https://anl.app.box.com/s/q11vyc14fmjz3gfefyk4o7plsgsr4wnp)
+3. Perform joint comparison in OverlapAnalysis/ using corner plots or KDE-based contours.
 
 ## Related Projects
-This repo focuses on radio wave data. For gravitational wave analysis, please visit [Gravitational Wave Analysis Repo](https://github.com/parth7stark/GW_VerticalFL/tree/main). Together, these repositories work within the multimessenger framework to capture and analyze various cosmic events.
-
-## Future Plans
-- Integration of additional messenger types (e.g., neutrinos, gamma rays)
-- Real-time data streaming and event detection
-- Cross-correlation between different datasets for enhanced analysis
-
-## Installation
-
-```
-conda create -n mma_radiowave python=3.10 --y
-conda activate mma_radiowave
-pip install -r requirements.txt
-```
+This repo focuses on performing joint analysis between gravitational and radio wave data. For gravitational wave and radio wave analysis, please visit [Gravitational Wave Analysis Repo](https://github.com/parth7stark/MMA_GravitationalWave/tree/main) and [Radio Wave Analysis Repo](https://github.com/parth7stark/MMA_RadioWave/tree/main). Together, these repositories work within the multimessenger framework to capture and analyze various cosmic events.
